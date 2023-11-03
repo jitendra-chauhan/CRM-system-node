@@ -7,10 +7,12 @@ import httpStatus from "http-status";
 class Config {
   private envInfoDetails;
   constructor() {
+    // installation .env file
     dotenv.config({
-      path: path.join(__dirname, "../.env"),
+      path: path.join(__dirname, "../../.env"),
     });
 
+    // validater of .env file
     const envVarsSchema = Joi.object()
       .keys({
         NODE_ENV: Joi.string()
@@ -22,6 +24,7 @@ class Config {
       })
       .unknown();
 
+    // validated .env file detail
     const { value: envVars, error } = envVarsSchema
       .prefs({
         errors: {
@@ -30,6 +33,7 @@ class Config {
       })
       .validate(process.env);
 
+    // error handler for env validation
     if (error) {
       throw new ApiError(
         httpStatus.NO_CONTENT,
@@ -39,9 +43,10 @@ class Config {
     this.envInfoDetails = envVars;
   }
 
+  // parrs the config detail
   getConfig() {
     return {
-      ENVIRONMENT: this.envInfoDetails.ENVIRONMENT,
+      ENVIRONMENT: this.envInfoDetails.NODE_ENV,
       port: this.envInfoDetails.PORT,
 
       mongoose: {

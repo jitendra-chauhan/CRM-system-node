@@ -16,7 +16,7 @@ class Http {
 
     this.server = http.createServer(this.app);
 
-    this.app.get("/test", (req: Request, res: Response) =>
+    this.app.get("/health", (req: Request, res: Response) =>
       res.status(200).send({ status: "OK" })
     );
   }
