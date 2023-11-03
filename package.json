@@ -1,0 +1,27 @@
+{
+  "name": "crm-system-node",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jitendra-chauhan/CRM-system-node.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jitendra-chauhan/CRM-system-node/issues"
+  },
+  "homepage": "https://github.com/jitendra-chauhan/CRM-system-node#readme",
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "http-status": "^1.7.3",
+    "joi": "^17.11.0",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.2.2"
+  }
+}
