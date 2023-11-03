@@ -1,21 +1,22 @@
 import http from "http";
 import https from "https";
-import express from "express";
+import express, { Request, Response, Express } from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
 
 class Http {
   private server: http.Server | https.Server;
+  private app: Express;
   constructor() {
-    const app = express();
+    this.app = express();
 
-    app.use(bodyParser.urlencoded({ extended: false }));
-    app.use(bodyParser.json());
-    app.use(cors());
+    this.app.use(bodyParser.urlencoded({ extended: false }));
+    this.app.use(bodyParser.json());
+    this.app.use(cors());
 
-    this.server = http.createServer(app);
+    this.server = http.createServer(this.app);
 
-    app.get("/test", (req: object, res: { status: Function }) =>
+    this.app.get("/test", (req: Request, res: Response) =>
       res.status(200).send({ status: "OK" })
     );
   }
@@ -23,6 +24,9 @@ class Http {
   getHttpServer() {
     return this.server;
   }
+  getExpressServer() {
+    return this.app;
+  }
 }
 
-export const httpServer = new Http().getHttpServer();
+export const httpServerProvider = new Http();
