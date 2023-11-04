@@ -6,6 +6,8 @@ import {
   GraphQLList,
 } from "graphql";
 import models from "../../models";
+import { ApiError } from "../../utile/ApiError";
+import httpStatus from "http-status";
 
 const usersType = new GraphQLObjectType({
   name: "Users",
@@ -16,6 +18,9 @@ const usersType = new GraphQLObjectType({
     userName: {
       type: GraphQLString,
     },
+    // password: {
+    //   type: GraphQLString,
+    // },
     firstName: {
       type: GraphQLString,
     },
@@ -47,6 +52,17 @@ export const login = {
   },
   async resolve(parent: any, args: any) {
     const userData = await models.Users.findOne({});
+
+    if (!userData) {
+      console.log("no data found");
+
+      throw new ApiError(httpStatus.NOT_EXTENDED, "user not found");
+      //   const customError = {
+      //     code: "CUSTOM_ERROR_CODE",
+      //     message: "This is a custom error message.",
+      //   };
+      //   throw customError;
+    }
     return userData;
   },
 };
