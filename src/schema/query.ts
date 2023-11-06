@@ -7,14 +7,28 @@ import {
   GraphQLList,
   GraphQLNonNull,
 } from "graphql";
-import { getAllUsers, login } from "./users";
-import * as userQuerys from "./users";
+
+import { userQuerys, userMutation, userSubscriptions } from "./users";
+
+console.log("userQuerys :: ", userQuerys);
 
 export const RootQuery = new GraphQLObjectType({
   name: "RootQuery",
   fields: {
     ...userQuerys,
-    // getAllUsers,
-    // login,
   },
+});
+
+export const SubScriptionQuery = new GraphQLObjectType({
+  name: "Subscription",
+  fields: {
+    ...userSubscriptions,
+  },
+});
+
+export const MutationQuery = new GraphQLObjectType({
+  name: "Mutation",
+  fields: () => ({
+    ...userMutation,
+  }),
 });

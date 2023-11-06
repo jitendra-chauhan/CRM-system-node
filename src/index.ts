@@ -6,7 +6,6 @@ import { httpServerProvider } from "./connections/Http";
 import { socketClient } from "./connections/WebSocket";
 import schema from "./schema";
 import models from "./models";
-// import MongoConnection from "";
 
 (async () => {
   // server port number
@@ -20,7 +19,7 @@ import models from "./models";
   const app = httpServerProvider.getExpressServer();
 
   // graphQl play-ground
-  app.use("/graphql", graphqlHTTP({ schema, context: models }));
+  app.use("/graphql", graphqlHTTP({ schema, context: models, graphiql: true }));
 
   // set graphQl for web socket
   useServer({ schema }, socketClient);
