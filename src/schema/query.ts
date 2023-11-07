@@ -9,6 +9,7 @@ import {
 } from "graphql";
 
 import { userQuerys, userMutation, userSubscriptions } from "./users";
+import { dashBoardMutation } from "./dashBoard";
 
 console.log("userQuerys :: ", userQuerys);
 
@@ -30,5 +31,6 @@ export const MutationQuery = new GraphQLObjectType({
   name: "Mutation",
   fields: () => ({
     ...userMutation,
+    ...dashBoardMutation,
   }),
 });

@@ -85,7 +85,7 @@ const addUser = {
   async resolve(parent: any, args: any) {
     await models.Users.create(args);
     const userData = await models.Users.find();
-    pubsub.publish("getAllUsersSub", userData);
+    // pubsub.publish("getAllUsersSub", userData);
     return userData;
   },
 };
@@ -107,7 +107,7 @@ export const userMutation = {
 export const userQuerys = {
   getAllUsers,
   login,
-  addUser,
+  // addUser,
 };
 
 export const userSubscriptions = {
